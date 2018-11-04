@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { RentalCard } from './RentalCard';
 import {connect} from 'react-redux';
 
+import * as actions from '../../actions';
+
 class RentalList extends Component {
 
   renderRentals() {
@@ -11,9 +13,12 @@ class RentalList extends Component {
 
   }
 
+  componentWillMount() {
+    this.props.dispatch(actions.fetchRentals());
+
+  }
+
   render() {
-    debugger;
-    this.props;
     return (
       <section id='rentalListing'>
         <h1 className='page-title'>Your Home All Around the World</h1>
@@ -26,9 +31,8 @@ class RentalList extends Component {
 }
 
 function mapStateToProps(state){
-  debugger;
   return {
-    rentals: state.rentals
+    rentals: state.rentals.data
   }
 }
 export default connect(mapStateToProps)(RentalList);
