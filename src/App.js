@@ -5,13 +5,23 @@ import { Provider } from 'react-redux';
 
 import { Header } from './shared/Header';
 import RentalList from './components/rental/RentalList';
-import RentalDetail from './components/rental/RentalDetail.js';
+import {RentalDetail} from './components/rental/RentalDetail.js';
 
 import './App.css';
 
 const store = require('./reducers').init();
 
+
+
 class App extends Component {
+
+  componentDidMount() {
+    store.subscribe(() => {
+      const currentState = store.getState();
+      debugger;
+      console.log(currentState);
+    })
+  }
 
   render() {
 
