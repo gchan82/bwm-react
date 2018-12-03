@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../actions';
+import * as actions from 'actions';
 
-export class RentalDetail extends Component {
+class RentalDetail extends Component {
 
   componentWillMount() {
     const rentalId = this.props.match.params.id;
