@@ -36,13 +36,13 @@ class FakeDB {
       description: "Very nice apartment in center of the city.",
       dailyRate: 23
     }]
-  }
 
-  this.users = [{
-  username: "Test User",
-  email: "test@gmail.com",
-  password: "testtest"
-}];
+    this.users = [{
+      username: "Test User",
+      email: "test@gmail.com",
+      password: "testtest"
+    }];
+  }
 
 async cleanDb() {
   await User.remove({});
