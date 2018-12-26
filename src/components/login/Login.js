@@ -1,10 +1,10 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions';
 
 class Login extends React.Component {
-
   constructor() {
     super();
 
@@ -16,6 +16,11 @@ class Login extends React.Component {
   }
 
   render() {
+    const { isAuth, errors } = this.props.auth;
+
+    if (isAuth) {
+      return <Redirect to={{ pathname: '/rentals' }} />;
+    }
 
     return (
       <section id="login">
@@ -23,24 +28,25 @@ class Login extends React.Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Login</h1>
-              <LoginForm submitCb={this.loginUser} />
+              <LoginForm submitCb={this.loginUser} errors={errors} />
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">
-                <h2 className="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
-                <img src='' alt="" />
+                <h2 className="catchphrase">
+                  Hundreds of awesome places in reach of few clicks.
+                </h2>
+                <img src="" alt="" />
               </div>
             </div>
           </div>
         </div>
       </section>
-
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  auth: state.auth
+  auth: state.auth;
 }
 
 export default connect(mapStateToProps)(Login);
