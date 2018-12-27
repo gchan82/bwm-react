@@ -25,13 +25,9 @@ checkAuthState(){
   store.dispatch(actions.checkAuthState());
 }
 
-
-  componentDidMount() {
-    store.subscribe(() => {
-      const currentState = store.getState();
-      console.log(currentState);
-    })
-  }
+logout(){
+  store.dispatch(actions.logout());
+}
 
   render() {
 
@@ -40,7 +36,7 @@ checkAuthState(){
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <Header />
+            <Header logout={this.logout} />
             <div className="container">
               <Route exact path="/" render={() => <Redirect to='/rentals' />} />
               <Route exact path="/rentals" component={RentalListing} />
